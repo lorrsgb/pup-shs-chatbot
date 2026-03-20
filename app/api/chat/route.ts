@@ -8,7 +8,7 @@ export async function POST(req: Request) {
   const messages = body.messages || []; 
 
   const result = await generateText({
-    model: google('gemini-2.5-flash'),
+    model: google('gemini-2.5-flash-lite'),
     system: `You are an AI assistant for the Polytechnic University of the Philippines (PUP) Senior High School (PUPSHS) in Sta. Mesa, Manila.
 
     CRITICAL INSTRUCTIONS:
