@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { Poppins } from 'next/font/google';
+import ReactMarkdown from 'react-markdown'; // Added import
 
 // Importing the Poppins font
 const poppins = Poppins({
@@ -13,7 +14,6 @@ const poppins = Poppins({
 export default function Chat() {
   const [input, setInput] = useState('');
   
-  // Removed "official" from the introduction message
   const [messages, setMessages] = useState<Array<{id: string, role: string, content: string}>>([
     {
       id: 'intro',
@@ -64,7 +64,6 @@ export default function Chat() {
   };
 
   return (
-    // Full screen layout wrapped in the Poppins font
     <div className={`flex flex-col w-full h-[100dvh] bg-pup-cream ${poppins.className} overflow-hidden`}>
       
       {/* Sleek, frosted-maroon header */}
@@ -72,7 +71,6 @@ export default function Chat() {
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2">
           <div className="text-center md:text-left">
             <h1 className="text-2xl font-bold text-white tracking-tight">PUP SHS Chatbot</h1>
-            {/* Removed "Official" from the subtitle */}
             <p className="text-sm text-pup-cream/80 font-medium">Assistant for PUP Senior High School Department Inquiries</p>
           </div>
         </div>
@@ -91,12 +89,19 @@ export default function Chat() {
           <div key={m.id} className={`whitespace-pre-wrap flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
             <span className={`inline-block p-4 md:p-5 text-[15px] md:text-[16px] leading-relaxed shadow-sm transition-all duration-300 ${
               m.role === 'user' 
-                // 50% transparency user bubbles
                 ? 'bg-pup-maroon/50 backdrop-blur-md text-gray-900 font-medium rounded-3xl rounded-tr-sm max-w-[85%] md:max-w-[75%]' 
-                // 50% transparency AI bubbles
                 : 'bg-white/50 backdrop-blur-md border border-pup-detail/20 text-gray-800 rounded-3xl rounded-tl-sm max-w-[90%] md:max-w-[80%]' 
             }`}>
-              {m.content}
+              {/* ReactMarkdown handles the clean formatting */}
+              <ReactMarkdown 
+                components={{
+                  strong: ({node, ...props}) => <span className="font-bold text-gray-900" {...props} />,
+                  ul: ({node, ...props}) => <ul className="list-disc pl-5 my-1 space-y-1" {...props} />,
+                  p: ({node, ...props}) => <p className="mb-2 last:mb-0" {...props} />
+                }}
+              >
+                {m.content}
+              </ReactMarkdown>
             </span>
           </div>
         ))}
@@ -121,7 +126,6 @@ export default function Chat() {
             onChange={(e) => setInput(e.target.value)} 
             disabled={isLoading}
           />
-          {/* Circular send button with 50% transparency */}
           <button 
             type="submit" 
             disabled={isLoading || !input.trim()}
