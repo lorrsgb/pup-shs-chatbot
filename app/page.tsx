@@ -96,7 +96,7 @@ export default function Chat() {
                 <span className="flex-shrink-0 w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
                 {/* FIXED: Smart text truncation. Hides the long part on small phones, shows on tablets/desktops */}
                 <p className="text-[9px] md:text-[10px] text-pup-cream/60 font-semibold uppercase tracking-widest truncate">
-                  Online Assistant <span className="hidden sm:inline">for the PUP Senior High School Department</span>
+                  Online Assistant for the PUP Senior High School Department <span className="hidden sm:inline">for the PUP Senior High School Department</span>
                 </p>
               </div>
             </div>
