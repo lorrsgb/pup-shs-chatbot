@@ -167,13 +167,14 @@ export default function Chat() {
                   li: ({node, ...props}) => (
                     <li className="flex items-start gap-2 text-gray-800">
                       <span className="flex-shrink-0 mt-[6px] text-[10px]">●</span>
-                      <div className="flex-1 leading-relaxed">{props.children}</div>
+                      {/* Tailwind targeting: forces nested <p> tags to be inline with no margin */}
+                      <div className="flex-1 leading-relaxed [&>p]:inline [&>p]:m-0">
+                        {props.children}
+                      </div>
                     </li>
                   ),
-                  p: ({node, ...props}) => {
-                    const isInsideLi = node?.parent?.tagName === 'li';
-                    return <p className={`${isInsideLi ? 'inline m-0' : 'mb-4 last:mb-0 block'}`} {...props} />;
-                  }
+                  // Removed the 'node' check entirely. Standard paragraphs get standard spacing.
+                  p: ({node, ...props}) => <p className="mb-4 last:mb-0" {...props} />
                 }}
               >
                 {m.content}
