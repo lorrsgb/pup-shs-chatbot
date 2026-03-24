@@ -13,7 +13,7 @@ const poppins = Poppins({
 
 export default function Chat() {
   const [input, setInput] = useState('');
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // New state for the menu
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   
   const [messages, setMessages] = useState<Array<{id: string, role: string, content: string}>>([
     {
@@ -34,7 +34,6 @@ export default function Chat() {
     scrollToBottom();
   }, [messages, isLoading]);
 
-  // Unified function to handle both manual typing and "Quick Inquiry" clicks
   const sendMessage = async (textToSend: string) => {
     if (!textToSend.trim()) return;
 
@@ -44,7 +43,7 @@ export default function Chat() {
     setInput(''); 
     setIsLoading(true);
     setError(null);
-    setIsMenuOpen(false); // Close menu after selection
+    setIsMenuOpen(false);
 
     try {
       const response = await fetch('/api/chat', {
@@ -72,15 +71,12 @@ export default function Chat() {
   return (
     <div className={`flex flex-col w-full h-[100dvh] bg-pup-cream ${poppins.className} overflow-hidden`}>
       
-      {/* Modern Heritage Header: Original Maroon with a Glassmorphism Twist */}
+      {/* Modern Heritage Header */}
       <header className="relative w-full bg-pup-maroon/90 backdrop-blur-2xl border-b border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.15)] py-3 px-4 md:px-6 z-30 flex-shrink-0">
-        {/* Subtle top "shimmer" line for a 3D glass effect */}
         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
         
-        {/* COMPACT FIX: Changed max-w-4xl to max-w-2xl */}
         <div className="max-w-2xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3 md:gap-4">
-            {/* Soft-rounded Circle Logo Container */}
+          <div className="flex items-center gap-3 md:gap-4 overflow-hidden">
             <div className="bg-white p-1 rounded-full shadow-lg flex-shrink-0 transition-transform hover:scale-105 duration-300">
               <Image 
                 src="/pup-logo.png" 
@@ -91,22 +87,25 @@ export default function Chat() {
                 priority 
               />
             </div>
-            <div className="min-w-0">
+            <div className="min-w-0 flex-1">
               <h1 className="text-lg md:text-xl font-bold text-white truncate tracking-tight">
                 PUP SHS <span className="font-light text-pup-cream/90">Chatbot</span>
               </h1>
-              <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
-                <p className="text-[9px] md:text-[10px] text-pup-cream/60 font-semibold uppercase tracking-widest">
-                  Online Assistant for the PUP Senior High School Department
+              <div className="flex items-center gap-1.5 md:gap-2">
+                {/* FIXED: Added flex-shrink-0 to prevent the dot from turning into an oval */}
+                <span className="flex-shrink-0 w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
+                {/* FIXED: Smart text truncation. Hides the long part on small phones, shows on tablets/desktops */}
+                <p className="text-[9px] md:text-[10px] text-pup-cream/60 font-semibold uppercase tracking-widest truncate">
+                  Online Assistant <span className="hidden sm:inline">for the PUP Senior High School Department</span>
                 </p>
               </div>
             </div>
           </div>
 
+          {/* FIXED: Added flex-shrink-0 to the button so it never gets crushed by the title */}
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)} 
-            className="p-2 text-white/90 hover:text-white hover:bg-white/10 rounded-xl transition-all duration-200 active:scale-90 border border-white/5 bg-white/5"
+            className="flex-shrink-0 p-2 text-white/90 hover:text-white hover:bg-white/10 rounded-xl transition-all duration-200 active:scale-90 border border-white/5 bg-white/5 ml-2"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 md:w-7 md:h-7">
               <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -114,7 +113,6 @@ export default function Chat() {
           </button>
         </div>
 
-        {/* Dropdown Menu (Quick Inquiries) */}
         {isMenuOpen && (
           <div className="absolute top-full right-4 mt-2 w-56 md:w-64 bg-white rounded-2xl shadow-2xl border border-pup-detail/20 py-3 z-50 animate-in fade-in zoom-in duration-200 origin-top-right">
             <p className="px-4 py-2 text-[10px] md:text-xs font-bold text-pup-maroon uppercase tracking-wider">Quick Inquiries</p>
@@ -139,7 +137,6 @@ export default function Chat() {
         )}
       </header>
 
-      {/* Main chat display area - COMPACT FIX: Changed max-w-4xl to max-w-2xl */}
       <main className="flex-1 w-full max-w-2xl mx-auto overflow-y-auto p-4 md:p-6 space-y-5 md:space-y-6">
         {error && (
           <div className="bg-red-500/10 border border-red-500/50 text-red-700 p-4 rounded-xl text-sm">
@@ -156,7 +153,6 @@ export default function Chat() {
                 </div>
               </div>
             )}
-            {/* COMPACT FIX: Reduced padding and text size slightly */}
             <span className={`inline-block p-3.5 md:p-4 text-[14px] md:text-[15px] leading-relaxed shadow-sm rounded-3xl transition-all ${
               m.role === 'user' 
                 ? 'bg-pup-maroon/50 backdrop-blur-md text-gray-900 font-medium rounded-tr-sm max-w-[90%] md:max-w-[80%]' 
@@ -169,7 +165,6 @@ export default function Chat() {
                   li: ({node, ...props}) => (
                     <li className="flex items-start gap-2 text-gray-800">
                       <span className="flex-shrink-0 mt-[6px] text-[10px]">●</span>
-                      {/* Tailwind targeting: forces nested <p> tags to be inline with no margin */}
                       <div className="flex-1 leading-relaxed [&>p]:inline [&>p]:m-0">
                         {props.children}
                       </div>
@@ -192,16 +187,15 @@ export default function Chat() {
               </div>
             </div>
             <span className="inline-flex items-center gap-1.5 p-3.5 md:p-4 bg-white/50 backdrop-blur-md border border-pup-detail/20 rounded-3xl rounded-tl-sm shadow-sm h-[44px] md:h-[48px]">
-              <span className="w-1.5 h-1.5 md:w-2 md:h-2 bg-pup-maroon rounded-full animate-bounce"></span>
-              <span className="w-1.5 h-1.5 md:w-2 md:h-2 bg-pup-maroon rounded-full animate-bounce [animation-delay:0.2s]"></span>
-              <span className="w-1.5 h-1.5 md:w-2 md:h-2 bg-pup-maroon rounded-full animate-bounce [animation-delay:0.4s]"></span>
+              <span className="flex-shrink-0 w-1.5 h-1.5 md:w-2 md:h-2 bg-pup-maroon rounded-full animate-bounce"></span>
+              <span className="flex-shrink-0 w-1.5 h-1.5 md:w-2 md:h-2 bg-pup-maroon rounded-full animate-bounce [animation-delay:0.2s]"></span>
+              <span className="flex-shrink-0 w-1.5 h-1.5 md:w-2 md:h-2 bg-pup-maroon rounded-full animate-bounce [animation-delay:0.4s]"></span>
             </span>
           </div>
         )}
         <div ref={messagesEndRef} />
       </main>
 
-      {/* Input area - COMPACT FIX: Changed max-w-4xl to max-w-2xl */}
       <div className="w-full bg-gradient-to-t from-pup-cream via-pup-cream/95 to-transparent pt-2 pb-4 md:pb-6 px-4 md:px-6 flex-shrink-0">
         <form onSubmit={handleFormSubmit} className="max-w-2xl mx-auto flex gap-2 md:gap-3 relative items-end">
           <input
@@ -211,11 +205,10 @@ export default function Chat() {
             onChange={(e) => setInput(e.target.value)} 
             disabled={isLoading}
           />
-          {/* COMPACT FIX: Shrunk the send button slightly */}
           <button 
             type="submit" 
             disabled={isLoading || !input.trim()}
-            className="w-11 h-11 md:w-12 md:h-12 rounded-full flex items-center justify-center bg-pup-maroon/50 backdrop-blur-md text-white hover:bg-pup-maroon/70 transition-all shadow-md disabled:opacity-50"
+            className="flex-shrink-0 w-11 h-11 md:w-12 md:h-12 rounded-full flex items-center justify-center bg-pup-maroon/50 backdrop-blur-md text-white hover:bg-pup-maroon/70 transition-all shadow-md disabled:opacity-50"
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 ml-1">
               <path d="M3.478 2.404a.75.75 0 0 0-.926.941l2.432 7.905H13.5a.75.75 0 0 1 0 1.5H4.984l-2.432 7.905a.75.75 0 0 0 .926.94 60.519 60.519 0 0 0 18.445-8.986.75.75 0 0 0 0-1.218A60.517 60.517 0 0 0 3.478 2.404Z" />
