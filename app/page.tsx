@@ -72,26 +72,42 @@ export default function Chat() {
   return (
     <div className={`flex flex-col w-full h-[100dvh] bg-pup-cream ${poppins.className} overflow-hidden`}>
       
-      {/* Header with Hamburger Menu */}
-      <header className="relative w-full bg-pup-maroon/95 backdrop-blur-md border-b border-[#5e0000] shadow-lg py-3 px-6 z-30 flex-shrink-0">
+      {/* Modern Heritage Header: Original Maroon with a Glassmorphism Twist */}
+      <header className="relative w-full bg-pup-maroon/90 backdrop-blur-2xl border-b border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.15)] py-4 px-4 md:px-6 z-30 flex-shrink-0">
+        {/* Subtle top "shimmer" line for a 3D glass effect */}
+        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+        
         <div className="max-w-4xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="bg-white/90 p-1 rounded-full shadow-sm flex-shrink-0">
-              <Image src="/pup-logo.png" alt="PUP Logo" width={40} height={40} className="object-contain" priority />
+          <div className="flex items-center gap-3 md:gap-4">
+            {/* Soft-rounded Circle Logo Container */}
+            <div className="bg-white p-1.5 rounded-full shadow-lg flex-shrink-0 transition-transform hover:scale-105 duration-300">
+              <Image 
+                src="/pup-logo.png" 
+                alt="PUP Logo" 
+                width={38} 
+                height={38} 
+                className="md:w-10 md:h-10 object-contain" 
+                priority 
+              />
             </div>
-            <div>
-              <h1 className="text-xl md:text-2xl font-bold text-white tracking-tight leading-none">PUP SHS Chatbot</h1>
-              <p className="text-[10px] md:text-sm text-pup-cream/80 font-medium">Assistant for the PUP Senior High School Department</p>
+            <div className="min-w-0">
+              <h1 className="text-xl md:text-2xl font-bold text-white truncate tracking-tight">
+                PUP SHS <span className="font-light text-pup-cream/90">Chatbot</span>
+              </h1>
+              <div className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
+                <p className="text-[10px] md:text-xs text-pup-cream/60 font-semibold uppercase tracking-widest">
+                  Online Assistant for the PUP Senior High School Department
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* Hamburger Button */}
           <button 
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="p-2 text-white hover:bg-white/10 rounded-lg transition-colors focus:outline-none"
-            aria-label="Quick Inquiries"
+            onClick={() => setIsMenuOpen(!isMenuOpen)} 
+            className="p-2.5 text-white/90 hover:text-white hover:bg-white/10 rounded-xl transition-all duration-200 active:scale-90 border border-white/5 bg-white/5"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-8 h-8">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-7 h-7 md:w-8 md:h-8">
               <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
           </button>
