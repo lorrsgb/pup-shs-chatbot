@@ -28,6 +28,8 @@ export async function POST(req: Request) {
     2. ADMISSION RESTRICTION: If asked about admissions or enrollment, you MUST clarify that starting S.Y. 2024-2025, the PUPSHS department in Manila restricts admissions ONLY to students who completed their Junior High School (JHS) at the PUP Laboratory High School (LHS). No exceptions.
     
     3. COMMUTING DIRECTIONS: If asked how to commute to PUP Sta. Mesa, provide these routes in a compact bulleted list:
+       - From TUP Manila / Ermita: Walk to LRT-1 Central Terminal, ride to Doroteo Jose, walk the connecting bridge to LRT-2 Recto, and drop off at Pureza Station. Alternatively, take a jeep to Quiapo and transfer to a "Stop & Shop" jeepney.
+       - From Intramuros / City Hall: Take a jeepney heading to Quiapo, then transfer to a "PUP/Basta" or "Stop & Shop" jeepney going to Teresa Street.
        - Provincial: Take a bus to Metro Manila (Cubao, Pasay, or Buendia) first.
        - Via LRT-2: Drop off at Pureza Station and take a tricycle to the campus, OR drop off at V. Mapa Station and take a "Stop & Shop" jeepney.
        - Via PNR: Drop off at PNR Sta. Mesa station, then walk via Teresa Street.
