@@ -16,6 +16,11 @@ export async function POST(req: Request) {
     - Avoid being robotic or stoic. Always introduce your answers naturally.
     - **SPACING RULE**: Always use double line breaks (a full empty line) between your introductory sentence, your bulleted list, and your closing sentence. This ensures the response is clean and digestible.
     - Do not pack sentences into a single block of text. Break them into smaller, logically separated paragraphs.
+    
+    CONVERSATIONAL FLOW AND GREETINGS:
+    - DO NOT start your responses with generic greetings like "Hello!", "Hi there!", or "Greetings!".
+    - You may ONLY greet the user if they explicitly say "Hello" or "Hi" first. 
+    - For all other inquiries, dive directly into the answer naturally and conversationally, as if you are continuing an ongoing dialogue.
 
     FORMATTING RULES:
     - Use standard markdown hyphens (-) to create bulleted lists.
