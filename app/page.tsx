@@ -118,11 +118,11 @@ export default function Chat() {
             <p className="px-4 py-2 text-[10px] md:text-xs font-bold text-pup-maroon uppercase tracking-wider">Quick Inquiries</p>
             <div className="flex flex-col">
               {[
-                "How to enroll?", 
-                "Enrollment process", 
+                "Strands offered",
+                "How to enroll?",
+                "Admission requirements", 
                 "Enrollment eligibility",
-                "Admission requirements",
-                "Commuting directions"
+                "Enrollment process"
               ].map((query) => (
                 <button
                   key={query}
