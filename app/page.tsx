@@ -19,7 +19,7 @@ export default function Chat() {
     {
       id: 'intro',
       role: 'assistant',
-      content: "Welcome to the PUPSHS Chatbot! 🏫\n\nI am here to assist you with inquiries specifically related to the **PUP Senior High School in Sta. Mesa**. Feel free to ask me about admission requirements, enrollment procedures, available strands, or commuting directions!"
+      content: "Welcome to the PUPSHS Chatbot! 🏫\n\nI am here to assist you with inquiries specifically related to the **Polytechnic University of the Philippines (PUP) Senior High School in Sta. Mesa**. Feel free to ask me about admission requirements, enrollment procedures, or available strands!"
     }
   ]);
   const [isLoading, setIsLoading] = useState(false);
@@ -118,8 +118,8 @@ export default function Chat() {
             <p className="px-4 py-2 text-[10px] md:text-xs font-bold text-pup-maroon uppercase tracking-wider">Quick Inquiries</p>
             <div className="flex flex-col">
               {[
-                "Strands offered",
                 "How to enroll?",
+                "Strands offered",
                 "Admission requirements", 
                 "Enrollment eligibility",
                 "Enrollment process"
